@@ -1,0 +1,39 @@
+body{
+	background-color: #FA604C;
+	text-align: center;
+}
+
+.table {
+  margin: 20px 0;
+}
+
+.table-row {
+  display: flex;
+  line-height: 24px;
+  /*white-space: nowrap;*/
+  margin: 10px 0;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+
+.table-row > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.handleColumn {
+ width: 15%;
+ /*background-color: blue*/
+}
+
+.descriptionColumn{
+  width: 60%;
+  background-color: orange
+}
+
+.nameColumn{
+  width: 25%;
+  /*background-color: blue*/
+}
