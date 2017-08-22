@@ -17,6 +17,7 @@ var client = new Twitter({
 app.get('/api/:searchHandle/:searchTerm', function(req,res){
 		getBio(req.params, res)
 });
+//http://expressjs.com/en/guide/routing.html#route-parameters
 
 app.use('/', express.static('dist'));
 

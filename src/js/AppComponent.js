@@ -62,24 +62,43 @@ export default class AppComponent extends Component {
     const followers = this.state.results;
     return (
       <div>
-        <h1>Follower Search for Journalists on Twitter</h1>
+        <h1>Search your Followers' Twitter Bios</h1>
+          <h5> A tool for Journalists developed at <a href="https://www.theoutline.com">The Outline </a>
+          </h5>
 
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="Handle"> Twitter Handle</label>
+          <label htmlFor="Handle"> Twitter Handle: </label>
           <input type="text" name="targetHandle" onChange={this.handleInputChange}/>
 
-          <label htmlFor="Term"> Search Term</label>
+          <label htmlFor="Term"> Search Term: </label>
           <input type="text" name="targetTerm" onChange={this.handleInputChange}/>
           <input type="submit" value="Search" />
         </form>
 
         <hr/> 
         <div className="table">
+          <div className="table-row">
+            <span className="numberColumn">
+            </span>
+            <span className= "handleColumn"> 
+              <h2>Handle</h2>
+            </span>
+            <span className= "descriptionColumn"> 
+              <h2>Description</h2>
+            </span>
+            <span className= "nameColumn">
+              <h2>Name</h2> 
+            </span>
+          </div>
+
           {followers.map( (follower, i) => 
             <div key={i} className="table-row">
+              <span className="numberColumn">
+                {i+1}
+              </span>
               <span className= "handleColumn"> 
-                <a href={`https:\/\/www.twitter.com/${follower.userHandle}`}>
-                  {follower.userHandle}
+                <a href={`https:\/\/www.twitter.com/${follower.userHandle}`} target="_blank">
+                  {`@${follower.userHandle}`}
                 </a>
               </span>
               <span className= "descriptionColumn">
@@ -91,6 +110,7 @@ export default class AppComponent extends Component {
             </div>
           )}
         </div>
+
       </div>
         
   
@@ -98,22 +118,5 @@ export default class AppComponent extends Component {
   }
 }
 
-// const Table = ({followers}) =>
-//   <div className="table">
-//     {followers.map( (follower, i) => 
-//       <div key={i} className="table-row">
-//         <span className= "handleColumn"> 
-//           <a href={`https:\/\/www.twitter.com/${follower.userHandle}`}>
-//             {follower.userHandle}
-//           </a>
-//         </span>
-//         <span className= "descriptionColumn">
-//           {follower.userDescription} 
-//         </span>
-//         <span className= "nameColumn">
-//           {follower.userName} 
-//         </span>
-//       </div>
-//     )}
-//   </div>
+
 
