@@ -1,40 +1,46 @@
 body{
-	background-color: #FA604C;
-	text-align: center;
+  background-color: aliceblue
 }
 
-.table {
-  margin: 20px 0;
+.centric{
+  text-align: center;
 }
 
-.table-row {
-  display: flex;
-  line-height: 24px;
-  margin: 10px 0;
-  padding: 10px;
-  background: #ffffff;
-  border: 1px solid #e3e3e3;
+@media (max-width: 855px){
+  .mb-2{
+    margin-bottom: 1.2rem!important
+  }
 }
 
-.table-row > span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 5px;
+
+.marginCenter{
+  margin: 0 auto;
 }
 
-.numberColumn{
-	width: 5%
+.underHelp{
+  position: absolute;
+  top: 3em;
 }
 
-.handleColumn {
- width: 15%;
+.jumbotron{
+  margin: 1em auto auto !important;
 }
 
-.descriptionColumn{
-  width: 60%;
-  background-color: orange
+.loading{
+  width: 800px;
+  height: 400px;
+  border-radius: 100%;
+  margin: 20px
 }
 
-.nameColumn{
-  width: 20%;
+.vert-centric{
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+}
+
+.load-notice{
+  position: relative;
+  top: 20%;
+  font-weight: bolder
 }
