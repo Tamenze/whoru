@@ -68,9 +68,12 @@ app.get('/api/signOut', function(req,res){
 app.use('/', express.static('dist'));
 
 
-app.get('/api/:searchHandle/:searchTerm', function(req,res){ //might possibly change to use query params
-		getBio(req, res) 
+app.get('/api/:searchHandle/:searchTerm', function(req,res){ 
+	console.log(req.params);
+	getBio(req, res) 
+
 });
+
 
 function getBio(request,response){
 
@@ -150,10 +153,18 @@ function getFollowers(client, {searchHandle, searchTerm, cursor, followers}){
 						})
 				}
 				else{
-					return getRateLimit(clientele).then(function(rateObj){
-						return{ remaining: rateObj.remainingReqs, expiration: rateObj.expireTime,newFollowers}
+					return getRateLimit(clientele)
+					.then(
+						function(rateObj){
+						return{ 
+							remaining: rateObj.remainingReqs, 
+							expiration: rateObj.expireTime,
+							newFollowers
+						}
 					})
 				}
+			})
+
 }
 
 
@@ -209,7 +220,6 @@ function getRateLimit(client){
 				return {remainingReqs, expireTime}
 			})
 }
-
 
 app.listen(3000);
 

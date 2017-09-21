@@ -72,12 +72,9 @@ export default class AppComponent extends Component {
       })
       return
     }
-    // const encodedTerm = encodeURI(this.state.targetTerm)
-    //use encodeuri
-      
-    fetch(`api/${this.state.targetHandle}/${this.state.targetTerm}`, { credentials: 'include'}) 
-
-    // fetch(`api/${this.state.targetHandle}?search=${encodedTerm}`,{ credentials: 'include'})
+    
+    const encodedTerm = encodeURIComponent(this.state.targetTerm)  
+    fetch(`api/${this.state.targetHandle}/${encodedTerm}`, { credentials: 'include'}) 
     .then(
       response => response.json() 
       //decoding the json we sent from the express server
@@ -85,12 +82,11 @@ export default class AppComponent extends Component {
     .then(
       (result) => {
         console.log("FOO",result)
-
         if(result.err){
           console.log("error: ",result.err)
           const remainder = result.remaining;
           const reset = result.reset
-          const error = result.err
+          const error = result.err[0].message || result.err 
           this.setState({
             errorMessage: error,
             fetchInProgress: false,
@@ -107,7 +103,7 @@ export default class AppComponent extends Component {
             remainingRequests: remainder
           })
         }else if(result.data.length <= 0){
-          console.log("no results found")
+          console.log("No results found")
           //calls renderNone function which shows "No results found."
           //here in case server doesnt error when no results found.
           const remainder = result.remaining;
@@ -116,8 +112,6 @@ export default class AppComponent extends Component {
           fetchInProgress: false,
           remainingRequests: remainder
           })
-        }else{
-          console.log("else line 122 reached")
         }
       })
       .catch( () => {
