@@ -62,94 +62,75 @@ export default class AppComponent extends Component {
       noResults: false,
       errorMessage: '',
       results: []
-    }),
+    });
 
-    //EVERY REQUEST SHOULD RETURN THE NUMBER OF REMAINING REQUESTS
+    if (this.state.targetTerm === " " ||this.state.targetHandle ===" "){
+      console.log("something is empty");
+      this.setState({
+        fetchInProgress: false,
+        errorMessage: "Something is empty."
+      })
+      return
+    }
+    // const encodedTerm = encodeURI(this.state.targetTerm)
+    //use encodeuri
       
     fetch(`api/${this.state.targetHandle}/${this.state.targetTerm}`, { credentials: 'include'}) 
-    //bc fetch by default doesnt send along cookies with the request
-    .then(function(response){
-      if(!response.ok){
-        console.log("Sorry Tolu, there was an error with the fetch.")
-        throw Error(response.statusText); //this comes up when searching for hashtags
 
-      }
-      return response
-    })
+    // fetch(`api/${this.state.targetHandle}?search=${encodedTerm}`,{ credentials: 'include'})
     .then(
-      response => response.json() //decoding the json we sent from the express server
+      response => response.json() 
+      //decoding the json we sent from the express server
     )
     .then(
       (result) => {
         console.log("FOO",result)
-        if (!result.err && result.data.length > 0 && !result.reset){
-          //IS THERE EVER A CASE WHERE I SEND BACK AN ERROR AND A FULL DATA ARRAY FROM SERVER? 
-          //no errors, data array returns at least one result, no max reached, no result.reset
-          const relevantFollowers = result.data;
-          const remainder = result.remaining;
-          this.setState({ 
-            results: relevantFollowers,
-            fetchInProgress: false,
-            remainingRequests: remainder
-          })
-        }else if(!result.err && result.data.length > 0){
-          //if there is no error, non empty data array BUT
-              // there is a max reached, and a reset 
-          //this occurs in the final else if in app.js, when too many requests but still want to send the results we received
-          const relevantFollowers = result.data;
-          const remainder = result.remaining;
-          // const reset = result.reset
-          let myDate = new Date(parseInt(result.reset)*1000)
-          let localDate = myDate.toLocaleTimeString()
-          const reset = localDate
-          console.log('resets at: ',reset)
-          this.setState({ 
-            results: relevantFollowers,
-            fetchInProgress: false,
-            waitTime: reset,
-            remainingRequests: remainder
-          })
-        } else if(result.err ){
-          //if there is an error (that got through the fetch error catch above), set state, and renders error message on page (using renderError function made)
-          console.log(result.err)
-          const remainder = result.remaining;
-          let error = result.err[0].message || result.err
 
-          if (result.reset){
-            console.log("reset ", result.reset);
-            let myDate = new Date(parseInt(result.reset)*1000)
-            const reset = myDate.toLocaleTimeString()
-            this.setState({waitTime: reset})
-          }
-
+        if(result.err){
+          console.log("error: ",result.err)
+          const remainder = result.remaining;
+          const reset = result.reset
+          const error = result.err
           this.setState({
             errorMessage: error,
             fetchInProgress: false,
+            remainingRequests: remainder,
+            waitTime: reset
+          })
+        }else if (result.data.length > 0){ 
+          //data array returns and has at least one result
+          const relevantFollowers = result.data;
+          const remainder = result.remaining;
+          this.setState({ 
+            results: relevantFollowers,
+            fetchInProgress: false,
             remainingRequests: remainder
           })
-        }
-        else if(result.data.length === 0){
-          //calls renderNone function to show "No results found."
-          const remainder = result.remaining;
+        }else if(result.data.length <= 0){
           console.log("no results found")
+          //calls renderNone function which shows "No results found."
+          //here in case server doesnt error when no results found.
+          const remainder = result.remaining;
           this.setState({ 
           noResults: true,
           fetchInProgress: false,
           remainingRequests: remainder
           })
         }else{
-          console.log("else line 147 reached")
+          console.log("else line 122 reached")
         }
+      })
+      .catch( () => {
+        this.setState({
+            fetchInProgress: false,
+            errorMessage: "Something went wrong."
+        })
+      })
 
-      }
-    )
-    // .catch(
-    //   e => e
-    // );
-  }
+  } //close of handleSubmit
 
   renderError(){
-    if(this.state.remainingRequests === 0){
+    if(this.state.remainingRequests === 0 && this.state.waitTime){
       return <h1 className="alert alert-danger">{this.state.errorMessage} Please wait until {this.state.waitTime} to make another request.</h1>
     }else if (this.state.errorMessage){
       return <h1 className="alert alert-danger"> {this.state.errorMessage} </h1>
@@ -187,12 +168,12 @@ export default class AppComponent extends Component {
               <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                 <div className="input-group-addon">@</div>
                 <input type="text" className=
-                "form-control inlineFormInputGroup" name="targetHandle" placeholder = "Handle" onChange={this.handleInputChange}/>
+                "form-control inlineFormInputGroup" name="targetHandle" placeholder = "Handle" onChange={this.handleInputChange} required/>
                 <small className="underHelp"> User should have under 75k followers.</small>
               </div>
 
               <label className="sr-only" htmlFor="inlineFormInputGroup"> Search Term </label>
-              <input type="text" className="form-control mb-2 mr-sm-2 mb-sm-0 inlineFormInputGroup" name="targetTerm" placeholder="Search Term" onChange={this.handleInputChange}/>
+              <input type="text" className="form-control mb-2 mr-sm-2 mb-sm-0 inlineFormInputGroup" name="targetTerm" placeholder="Search Term" onChange={this.handleInputChange} required/>
 
               <input type="submit" value="Search" className="btn btn-primary"/>
             </form>
@@ -222,12 +203,6 @@ export default class AppComponent extends Component {
                 <h2 className="load-notice"> One moment please</h2>
               </div>
     }else if((this.state.fetchInProgress === false) && followers.length > 0){
-      if ((this.state.remainingRequests === 0) && this.state.waitTime){
-        return <div className="col-md-10">
-            <h1> You have reached your maximum # of requests. Please wait {this.state.waitTime} before searching again.</h1> 
-            <FollowerTable followers={this.state.results}/>
-            </div>
-      }
       return <div className="col-md-10">
             <FollowerTable followers={this.state.results}/>
             </div>
@@ -237,7 +212,7 @@ export default class AppComponent extends Component {
 
   renderRemainingRequests(){
     if (this.state.remainingRequests){
-      return <div className="col-md-10"> {this.state.remainingRequests} requests remaining</div>
+      return <div className="col-md-10"> {this.state.remainingRequests} requests remaining ({this.state.remainingRequests*5000} followers).</div>
     }
   }
 

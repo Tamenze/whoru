@@ -95,10 +95,7 @@ function getBio(request,response){
 				followers:[]
 			})
 		)
-		.then( (data) => response.json({data: data.newFollowers, reset: data.expiration, remaining: data.remaining}))
-
-		// .then((data) => console.log(data))
-
+		.then( (data) => response.json({data: data, reset: reset, remaining: remainingReqs}))
 		.catch( (err) => {
 			console.log(err);
 			response.json({err: err,remaining: remainingReqs })
@@ -129,7 +126,7 @@ function getFollowers(client, {searchHandle, searchTerm, cursor, followers}){
 			// return Promise.all(promiseArray) //returns a promise that takes an array (promiseArray) of all the arrays returned from lookupBunch 
 
 			return Promise.all(promiseArray).then(function(followerChunks){
-				return {followerChunks, newCursor, client}
+				return {followerChunks, newCursor}
 			})
 		})
 			.then(
@@ -138,9 +135,10 @@ function getFollowers(client, {searchHandle, searchTerm, cursor, followers}){
 				const cursor = data.newCursor
 				
 				const newFollowers = [].concat(...followerChunks);
-				const clientele = data.client
+
 
 				if (cursor !== 0){
+				// 	// console.log("new Followers: ",newFollowers)
 					return getFollowers(client, 
 						{
 							searchHandle, 
@@ -150,10 +148,17 @@ function getFollowers(client, {searchHandle, searchTerm, cursor, followers}){
 						})
 				}
 				else{
-					return getRateLimit(clientele).then(function(rateObj){
-						return{ remaining: rateObj.remainingReqs, expiration: rateObj.expireTime,newFollowers}
-					})
+					return newFollowers
 				}
+
+			})
+			// .then(
+			// 	function(data){
+			// 	console.log(data)
+			// 	// response.json({data: data, reset: reset, remaining: remainingReqs})
+			// 	}
+			// )
+			//expecting this to log all returned data, whether 1 or multiple iterations
 }
 
 
@@ -185,7 +190,7 @@ function getUser(client, searchHandle){
 		.then(function(tweets){
 			const followerCount = tweets[0].followers_count
 			if (followerCount >= 75000){
-				return Promise.reject("The requested user has too many followers.");
+				return Promise.reject("too many followers");
 				//chains the string to our error that we return
 			} 
 		})
@@ -205,14 +210,8 @@ function getRateLimit(client){
 
 				if (remainingReqs <= 0){
 					return Promise.reject(`Not enough requests. Please wait until ${expireTime} to search.`);
-				}
-				return {remainingReqs, expireTime}
+				}	
 			})
 }
-
-
-app.listen(3000);
-
-
 
 
