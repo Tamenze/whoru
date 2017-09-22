@@ -10,7 +10,7 @@ passport.use(new Strategy({
 	consumerKey: process.env.BIOTWIT_CONSUMER_KEY,
 	consumerSecret: process.env.BIOTWIT_CONSUMER_SECRET,
 	// callbackURL: 'http://127.0.0.1:3000/login/twitter/return'
-	callbackURL: 'https://hiwho.herokuapp.com/login/twitter/return'
+	callbackURL: 'https://hiwhoru.herokuapp.com/login/twitter/return'
 },
 	function(token, tokenSecret, profile, cb){	
 		return cb(null, {token: token, tokenSecret: tokenSecret, signedIn: true})
