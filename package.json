@@ -2,6 +2,9 @@
   "name": "fourth",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "node":"8.4.0"
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.1",
