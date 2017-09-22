@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import '../App.css';
 import Background from '../Lines.gif';
 
 
@@ -47,7 +46,6 @@ export default class AppComponent extends Component {
     )
     .then(
       (result) =>{
-        // console.log("sign out return: ", result.data)
         this.setState({userSignedIn: result.data})
       }
     )
@@ -65,7 +63,7 @@ export default class AppComponent extends Component {
     });
 
     if (this.state.targetTerm === " " ||this.state.targetHandle ===" "){
-      console.log("something is empty");
+      // console.log("something is empty");
       this.setState({
         fetchInProgress: false,
         errorMessage: "Something is empty."
@@ -81,9 +79,9 @@ export default class AppComponent extends Component {
     )
     .then(
       (result) => {
-        console.log("FOO",result)
+        // console.log("FOO",result)
         if(result.err){
-          console.log("error: ",result.err)
+          // console.log("error: ",result.err)
           const remainder = result.remaining;
           const reset = result.reset
           const error = result.err[0].message || result.err 
@@ -103,7 +101,7 @@ export default class AppComponent extends Component {
             remainingRequests: remainder
           })
         }else if(result.data.length <= 0){
-          console.log("No results found")
+          // console.log("No results found")
           //calls renderNone function which shows "No results found."
           //here in case server doesnt error when no results found.
           const remainder = result.remaining;
@@ -144,7 +142,7 @@ export default class AppComponent extends Component {
     )
     .then(
       (result) => {
-        console.log("user check: ", result.data);
+        // console.log("user check: ", result.data);
         if (result.data){
           this.setState({userSignedIn: result.data})
         }
