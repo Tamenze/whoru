@@ -23,7 +23,8 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "build": "webpack --progress --colors --watch",
+    "build": "webpack -p",
+    "watch": "webpack --progress --colors --watch",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
