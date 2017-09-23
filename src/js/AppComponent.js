@@ -78,9 +78,10 @@ export default class AppComponent extends Component {
     )
     .then(
       (result) => {
-        // console.log("FOO",result)
+        console.log("FOO",result)
         if(result.err){
           // console.log("error: ",result.err)
+          // console.log("remaining: "result.remaining)
           const remainder = result.remaining;
           const reset = result.reset
           const error = result.err[0].message || result.err 
@@ -178,6 +179,7 @@ export default class AppComponent extends Component {
                 Sign Out
               </button>  
             </div>
+            
 
           </div> 
     }else{
@@ -224,7 +226,7 @@ export default class AppComponent extends Component {
             </h5>
             <hr/>
             <h5 className="lead"> 
-              A tool* for Journalists developed at <a href="https://www.theoutline.com" target="_blank">The Outline</a>
+              A tool for journalists developed at <a href="https://www.theoutline.com" target="_blank">The Outline</a>.*
             </h5>
             <br/>
 

@@ -115,7 +115,7 @@ function getBio(request,response){
 		// .then((data) => console.log(data))
 		.catch( (err) => {
 			console.log(err);
-			response.json({err: err,remaining: remainingReqs })
+			response.json({err: err /*,remaining: remainingReqs*/ })
 		})
 }
 
@@ -222,10 +222,11 @@ function getRateLimit(client){
 				let remainingReqs = data.resources.followers["/followers/ids"].remaining;	
 				let reset = data.resources.followers["/followers/ids"].reset;
 
-          	let myDate= new Date(parseInt(reset)*1000)
-          	console.log("mydate: ",myDate)
-            let expireTime = myDate.toLocaleTimeString()
-            console.log("expiretime: ",expireTime)
+			console.log("reset: ", reset);
+          	let myDate= new Date(parseInt(reset)*1000);
+          	console.log("mydate: ",myDate);
+            let expireTime = myDate.toLocaleTimeString();
+            console.log("expiretime: ",expireTime);
 
 				if (remainingReqs <= 0){
 					return Promise.reject(`Not enough requests left. Please wait until ${expireTime} to search.`);
