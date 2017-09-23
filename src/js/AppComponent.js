@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../Lines.gif';
 
 
 export default class AppComponent extends Component {
@@ -144,7 +143,9 @@ export default class AppComponent extends Component {
       (result) => {
         // console.log("user check: ", result.data);
         if (result.data){
-          this.setState({userSignedIn: result.data})
+          this.setState({
+            userSignedIn: result.data,
+          })
         }
       }
     )
@@ -223,14 +224,22 @@ export default class AppComponent extends Component {
             </h5>
             <hr/>
             <h5 className="lead"> 
-              A tool for Journalists developed at <a href="https://www.theoutline.com">The Outline</a>
+              A tool* for Journalists developed at <a href="https://www.theoutline.com" target="_blank">The Outline</a>
             </h5>
             <br/>
 
             <div className="row marginCenter">
             {this.renderForm()}
             </div>
+
+
           </div>
+            <div className="row marginCenter notes"> 
+              <p className="col-md-8 rateNotice">*This tool is subject to rate limiting by Twitter.</p>
+              <div className="col-md-4 tipjar">
+                <a className="btn btn-outline-success btn-sm" href="https://PayPal.Me/lu2moons" target="_blank" role="button">Tip Jar</a>
+              </div>
+            </div>
         </div>
         <div className="row justify-content-md-center centric">
             {this.renderRemainingRequests()}
@@ -246,7 +255,6 @@ export default class AppComponent extends Component {
 
 
 const backstyle = {
-  // backgroundImage: `url(${Background})`
   backgroundColor: 'black'
 }
 

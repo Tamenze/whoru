@@ -4,7 +4,7 @@ var Twitter = require('twitter');
 var passport = require('passport');
 var Promise = require('promise');
 var Strategy = require('passport-twitter').Strategy;
-
+var cookieSession = require('cookie-session');
 
 passport.use(new Strategy({
 	consumerKey: process.env.BIOTWIT_CONSUMER_KEY,
@@ -18,6 +18,7 @@ passport.use(new Strategy({
 ));
 
 passport.serializeUser(function(user,cb){
+	console.log(user);
 	cb(null, user);
 });
 
@@ -31,8 +32,13 @@ app.use(passport.session());
 app.use(require('morgan')('combined')); //look into
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({extended: true})); 
-app.use(require('express-session')({secret: 'keyboard dog', resave: true, saveUninitialized: true}));
-
+// app.use(require('express-session')({secret: 'keyboard dog', resave: true, saveUninitialized: true}));
+app.use(cookieSession(
+{ 
+	name: 'session', 
+	keys: ['tennis', 'keyboard'],
+	maxAge: 24 * 60 * 60 * 1000
+}));
 
 
 
@@ -59,10 +65,16 @@ app.get('/api/checkLoggedIn', function(req,res){
 })
 
 app.get('/api/signOut', function(req,res){
-	req.session.destroy(function(err){
-		console.log("req sessions: ", req.session);
-		res.json({data: false})
-	})
+	// console.log(req)
+	req.session = null
+	res.json({data: false})
+	// console.log("req sessions: ", req.session);
+
+	// req.session.destroy(function(err){
+		// console.log(req)
+		// console.log("req sessions: ", req.session);
+		// res.json({data: false})
+	// })
 })
 
 
@@ -100,9 +112,7 @@ function getBio(request,response){
 			})
 		)
 		.then( (data) => response.json({data: data.newFollowers, reset: data.expiration, remaining: data.remaining}))
-
 		// .then((data) => console.log(data))
-
 		.catch( (err) => {
 			console.log(err);
 			response.json({err: err,remaining: remainingReqs })
@@ -209,14 +219,16 @@ function getRateLimit(client){
 				resources: 'followers'
 			})
 			.then(function(data){
-				remainingReqs = data.resources.followers["/followers/ids"].remaining;	
-				reset = data.resources.followers["/followers/ids"].reset;
+				let remainingReqs = data.resources.followers["/followers/ids"].remaining;	
+				let reset = data.resources.followers["/followers/ids"].reset;
 
-          	myDate = new Date(parseInt(reset)*1000)
-            expireTime = myDate.toLocaleTimeString()
+          	let myDate= new Date(parseInt(reset)*1000)
+          	console.log("mydate: ",myDate)
+            let expireTime = myDate.toLocaleTimeString()
+            console.log("expiretime: ",expireTime)
 
 				if (remainingReqs <= 0){
-					return Promise.reject(`Not enough requests. Please wait until ${expireTime} to search.`);
+					return Promise.reject(`Not enough requests left. Please wait until ${expireTime} to search.`);
 				}
 				return {remainingReqs, expireTime}
 			})

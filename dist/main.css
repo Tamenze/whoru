@@ -24,6 +24,21 @@ body{
 
 .jumbotron{
   margin: 1em auto auto !important;
+  padding-bottom: 0 !important
+}
+
+.notes{
+  font-size: 13px;
+  margin-top: 2em;
+}
+
+.rateNotice{
+  text-align: left;
+}
+
+.tipjar{
+  text-align: right;
+  padding-right: 0px;
 }
 
 .loading{
