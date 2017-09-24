@@ -11,7 +11,6 @@ export default class AppComponent extends Component {
       results: [],
       fetchInProgress: false,
       noResults: false,
-      waitTime: '',
       errorMessage: '',
       remainingRequests: ''
     }
@@ -80,16 +79,13 @@ export default class AppComponent extends Component {
       (result) => {
         console.log("FOO",result)
         if(result.err){
-          // console.log("error: ",result.err)
-          // console.log("remaining: "result.remaining)
           const remainder = result.remaining;
-          const reset = result.reset
+          const reset = result. reset
           const error = result.err[0].message || result.err 
           this.setState({
             errorMessage: error,
             fetchInProgress: false,
             remainingRequests: remainder,
-            waitTime: reset
           })
         }else if (result.data.length > 0){ 
           //data array returns and has at least one result
@@ -122,9 +118,7 @@ export default class AppComponent extends Component {
   } //close of handleSubmit
 
   renderError(){
-    if(this.state.remainingRequests === 0 && this.state.waitTime){
-      return <h1 className="alert alert-danger">{this.state.errorMessage} Please wait until {this.state.waitTime} to make another request.</h1>
-    }else if (this.state.errorMessage){
+    if (this.state.errorMessage){
       return <h1 className="alert alert-danger"> {this.state.errorMessage} </h1>
     }
   }
@@ -146,6 +140,8 @@ export default class AppComponent extends Component {
         if (result.data){
           this.setState({
             userSignedIn: result.data,
+            fetchInProgress: false
+
           })
         }
       }
@@ -179,7 +175,7 @@ export default class AppComponent extends Component {
                 Sign Out
               </button>  
             </div>
-            
+
 
           </div> 
     }else{

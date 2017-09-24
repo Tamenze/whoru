@@ -22315,7 +22315,6 @@ var AppComponent = function (_Component) {
       results: [],
       fetchInProgress: false,
       noResults: false,
-      waitTime: '',
       errorMessage: '',
       remainingRequests: ''
     };
@@ -22384,16 +22383,13 @@ var AppComponent = function (_Component) {
       ).then(function (result) {
         console.log("FOO", result);
         if (result.err) {
-          // console.log("error: ",result.err)
-          // console.log("remaining: "result.remaining)
           var remainder = result.remaining;
           var reset = result.reset;
           var error = result.err[0].message || result.err;
           _this3.setState({
             errorMessage: error,
             fetchInProgress: false,
-            remainingRequests: remainder,
-            waitTime: reset
+            remainingRequests: remainder
           });
         } else if (result.data.length > 0) {
           //data array returns and has at least one result
@@ -22426,16 +22422,7 @@ var AppComponent = function (_Component) {
   }, {
     key: 'renderError',
     value: function renderError() {
-      if (this.state.remainingRequests === 0 && this.state.waitTime) {
-        return _react2.default.createElement(
-          'h1',
-          { className: 'alert alert-danger' },
-          this.state.errorMessage,
-          ' Please wait until ',
-          this.state.waitTime,
-          ' to make another request.'
-        );
-      } else if (this.state.errorMessage) {
+      if (this.state.errorMessage) {
         return _react2.default.createElement(
           'h1',
           { className: 'alert alert-danger' },
@@ -22467,7 +22454,9 @@ var AppComponent = function (_Component) {
         // console.log("user check: ", result.data);
         if (result.data) {
           _this4.setState({
-            userSignedIn: result.data
+            userSignedIn: result.data,
+            fetchInProgress: false
+
           });
         }
       });
