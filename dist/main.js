@@ -22454,9 +22454,7 @@ var AppComponent = function (_Component) {
         // console.log("user check: ", result.data);
         if (result.data) {
           _this4.setState({
-            userSignedIn: result.data,
-            fetchInProgress: false
-
+            userSignedIn: result.data
           });
         }
       });

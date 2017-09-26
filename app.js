@@ -59,16 +59,15 @@ app.get('/login/twitter/return', //the callback we specified at the top
 app.get('/api/checkLoggedIn', function(req,res){
 //if token there, return it, and then on react side, change state
 	if (req.session.passport && req.session.passport.user.token){
-		// console.log("there is a user");
 		res.json({data: req.session.passport.user.signedIn});
+	}else{
+		res.json({data: false})
 	}
 })
 
 app.get('/api/signOut', function(req,res){
-	// console.log(req)
 	req.session = null
 	res.json({data: false})
-	// console.log("req sessions: ", req.session);
 
 	// req.session.destroy(function(err){
 		// console.log(req)

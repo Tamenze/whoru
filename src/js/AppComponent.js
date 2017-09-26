@@ -140,8 +140,6 @@ export default class AppComponent extends Component {
         if (result.data){
           this.setState({
             userSignedIn: result.data,
-            fetchInProgress: false
-
           })
         }
       }
