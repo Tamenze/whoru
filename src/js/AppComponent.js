@@ -178,9 +178,7 @@ export default class AppComponent extends Component {
           </div> 
     }else{
       return <div className="marginCenter">
-              <button> 
-              <a href="/login/twitter">Sign In With Twitter</a>
-              </button>  
+              <a className="btn btn-default btn-lg" id="btnSignIn" href="/login/twitter" role="button">Sign In With Twitter</a>
             </div>
     }
   }

@@ -22513,13 +22513,9 @@ var AppComponent = function (_Component) {
           'div',
           { className: 'marginCenter' },
           _react2.default.createElement(
-            'button',
-            null,
-            _react2.default.createElement(
-              'a',
-              { href: '/login/twitter' },
-              'Sign In With Twitter'
-            )
+            'a',
+            { className: 'btn btn-default btn-lg', id: 'btnSignIn', href: '/login/twitter', role: 'button' },
+            'Sign In With Twitter'
           )
         );
       }
