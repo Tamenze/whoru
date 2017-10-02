@@ -22580,7 +22580,7 @@ var AppComponent = function (_Component) {
             _react2.default.createElement(
               'h5',
               { className: 'lead' },
-              'Search your Followers\' Twitter Bios'
+              'Search Followers\' Twitter Bios'
             ),
             _react2.default.createElement('hr', null),
             _react2.default.createElement(

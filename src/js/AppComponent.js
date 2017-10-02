@@ -214,7 +214,7 @@ export default class AppComponent extends Component {
               Hi, Who Are You? 🤔 
             </h1> 
             <h5 className="lead">
-              Search your Followers' Twitter Bios
+              Search Followers' Twitter Bios
             </h5>
             <hr/>
             <h5 className="lead"> 
