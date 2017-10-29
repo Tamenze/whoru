@@ -22538,6 +22538,13 @@ var AppComponent = function (_Component) {
         return _react2.default.createElement(
           'div',
           { className: 'col-md-10' },
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h1',
+            null,
+            this.state.results.length,
+            ' followers matched '
+          ),
           _react2.default.createElement(FollowerTable, { followers: this.state.results })
         );
       }

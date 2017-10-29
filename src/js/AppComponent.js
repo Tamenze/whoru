@@ -191,6 +191,8 @@ export default class AppComponent extends Component {
               </div>
     }else if((this.state.fetchInProgress === false) && followers.length > 0){
       return <div className="col-md-10">
+            <br/>
+            <h1>{this.state.results.length} followers matched </h1>
             <FollowerTable followers={this.state.results}/>
             </div>
     }
