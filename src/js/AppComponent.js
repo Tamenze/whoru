@@ -17,7 +17,7 @@ export default class AppComponent extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this); //binds 'this' reffed in function to the AppComponent Class
 
     this.renderResults = this.renderResults.bind(this);
     this.renderForm = this.renderForm.bind(this);

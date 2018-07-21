@@ -32,7 +32,6 @@ app.use(passport.session());
 app.use(require('morgan')('combined')); //look into
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({extended: true})); 
-// app.use(require('express-session')({secret: 'keyboard dog', resave: true, saveUninitialized: true}));
 app.use(cookieSession(
 { 
 	name: 'session', 
