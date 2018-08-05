@@ -10,4 +10,4 @@ This app uses the following technologies:
 1. [React with Webpack](https://facebook.github.io/react/) for compiling
 2. [Bootstrap](https://react-bootstrap.github.io/) for styling
 3. [Twitter's Rest API](https://developer.twitter.com/en/docs/basics/getting-started)
-4. [Node](https://nodejs.org/en/)/[Express](https://expressjs.com/) back-end for routing
+4. [Node](https://nodejs.org/en/)/[Express](https://expressjs.com/) back-end for routing 
