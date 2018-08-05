@@ -1,7 +1,7 @@
-## Hi, Who Are You?
-This app was commissioned by my former boss [AJ](https://twitter.com/adrjeffries), who is an editor at [The Outline](https://theoutline.com/). She needed a way to cull her social media following for sources to use for articles, and since Twitter currently has no way of doing that, the idea for this app was born. 
+## Hi, Who Are You? 🤔
+This app was commissioned by my former boss [Adrianne Jeffries](https://twitter.com/adrjeffries), during her time as an editor at [The Outline](https://theoutline.com/). She needed a way to parse her social media following for potential sources to contact for reporting on tech, and since Twitter currently has no way of doing that, the idea for this app was born. 
 
-It allows you to search through your (or anyone's) Twitter followers for a specific term or phrase (ex: "Google" or "design") to find those followers who have that term in their Twitter bio. Often people list their employer or field of work in their bio, so this introduces a new search engine for our modern times -- it's helpful not only for journalists, but for job seekers, and anyone who's trying to find connections on Twitter. 
+It allows you to search through your (or anyone's) Twitter followers for a specific term or phrase (ex: "Google" or "design") to find those followers who have that term in their Twitter bio. Often people list their employer or field of work in their bio, so this introduces a new people search engine for our modern times – it's helpful not only for journalists, but for job seekers, and really anyone who is trying to find specific connections on Twitter. 
 
 You can find a deployed version of this app [here](hiwhoru.herokuapp.com).
 
