@@ -3,7 +3,7 @@ This app was commissioned by my former boss [Adrianne Jeffries](https://twitter.
 
 It allows you to search through your (or anyone's) Twitter followers for a specific term or phrase (ex: "Google" or "design") to find those followers who have that term in their Twitter bio. Often people list their employer or field of work in their bio, so this introduces a new people search engine for our modern times – it's helpful not only for journalists, but for job seekers, and really anyone who is trying to find specific connections on Twitter. 
 
-You can find a deployed version of this app [here](hiwhoru.herokuapp.com).
+You can find a deployed version of this app [here](http://hiwhoru.herokuapp.com/).
 
 ## Tech
 This app uses the following technologies:
