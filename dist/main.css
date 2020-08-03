@@ -1,5 +1,6 @@
 body {
-  background-color: aliceblue;
+  background-color: #00bfff;
+  color: #07004d;
 }
 
 .centric {
@@ -22,8 +23,10 @@ body {
 }
 
 .jumbotron {
-  margin: 7em auto auto !important;
+  margin: 10em auto auto !important;
   padding-bottom: 0 !important;
+  background-color: #7ae7c7;
+  min-height: 18em;
 }
 
 .notes {
@@ -60,4 +63,12 @@ body {
 
 #btnSignIn {
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-success {
+  margin-right: 0.2em;
+}
+
+td > a {
+  color: #9649cb;
 }

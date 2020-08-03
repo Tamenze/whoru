@@ -1,4 +1,6 @@
 var express = require("express");
+var favicon = require("serve-favicon");
+var path = require("path");
 var app = express();
 var Twitter = require("twitter");
 var passport = require("passport");
@@ -6,6 +8,8 @@ var Promise = require("promise");
 var Strategy = require("passport-twitter").Strategy;
 var cookieSession = require("cookie-session");
 require("dotenv").config();
+
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 passport.use(
   new Strategy(
