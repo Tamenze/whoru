@@ -1,64 +1,63 @@
-body{
-  background-color: aliceblue
+body {
+  background-color: aliceblue;
 }
 
-.centric{
+.centric {
   text-align: center;
 }
 
-@media (max-width: 855px){
-  .mb-2{
-    margin-bottom: 1.2rem!important
+@media (max-width: 855px) {
+  .mb-2 {
+    margin-bottom: 1.2rem !important;
   }
 }
 
-
-.marginCenter{
+.marginCenter {
   margin: 0 auto;
 }
 
-.underHelp{
+.underHelp {
   position: absolute;
   top: 3em;
 }
 
-.jumbotron{
-  margin: 1em auto auto !important;
-  padding-bottom: 0 !important
+.jumbotron {
+  margin: 7em auto auto !important;
+  padding-bottom: 0 !important;
 }
 
-.notes{
+.notes {
   font-size: 13px;
   margin-top: 2em;
 }
 
-.rateNotice{
+.rateNotice {
   text-align: left;
 }
 
-.tipjar{
+.tipjar {
   text-align: right;
   padding-right: 0px;
 }
 
-.loading{
+.loading {
   width: 800px;
   height: 400px;
   border-radius: 100%;
-  margin: 20px
+  margin: 20px;
 }
 
-.vert-centric{
+.vert-centric {
   top: 50%;
   transform: translateY(50%);
 }
 
-.load-notice{
+.load-notice {
   position: relative;
   top: 20%;
-  font-weight: bolder
+  font-weight: bolder;
 }
 
-#btnSignIn{
-  border: 1px solid rgba(0,0,0,.2);
+#btnSignIn {
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }

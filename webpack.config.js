@@ -1,22 +1,22 @@
 module.exports = {
-  entry: './src/js/index',
+  entry: "./src/js/index",
   output: {
-    filename: './dist/main.js'
+    filename: "./dist/main.js",
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['es2015', 'react']
-        }
+          presets: ["es2015", "react"],
+        },
       },
       {
-        test: /\.(png|jpg|gif)$/, 
-        loader: 'url-loader',
-      }
-    ]
-  }
+        test: /\.(png|jpg|gif)$/,
+        loader: "url-loader",
+      },
+    ],
+  },
 };
