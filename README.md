@@ -11,3 +11,8 @@ This app uses the following technologies:
 2. [Bootstrap](https://react-bootstrap.github.io/) for styling
 3. [Twitter's Rest API](https://developer.twitter.com/en/docs/basics/getting-started)
 4. [Node](https://nodejs.org/en/)/[Express](https://expressjs.com/) back-end for routing
+
+## Running Locally 
+* To run locally, comment in the local callback url in app.js and comment out the online version. You'll also need to have admin privileges in the developer.twitter.com dashboard and change the callback url there as well to the local version. 
+* Visit `http://127.0.0.1:3000/` instead of `localhost:3000`, the latter will give an error when trying to sign in to Twitter. [Details here](https://github.com/jaredhanson/passport-twitter/issues/45).
+* When making cosmetic changes, run `npm run-script watch` in an additional terminal window alongside `npm start` in the other. 

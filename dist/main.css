@@ -56,6 +56,7 @@ body {
 }
 
 .load-notice {
+  color: white;
   position: relative;
   top: 20%;
   font-weight: bolder;
@@ -70,5 +71,38 @@ body {
 }
 
 td > a {
-  color: #9649cb;
+  color: #f8f991;
+}
+
+table {
+  color: white;
+  font-weight: 450;
+  table-layout: fixed;
+}
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 40%;
+}
+
+thead th:nth-child(4) {
+  width: 30%;
+}
+
+td {
+  word-wrap: break-word;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #663399;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ff00ff;
 }
