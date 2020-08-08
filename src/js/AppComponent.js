@@ -55,7 +55,6 @@ export default class AppComponent extends Component {
     });
 
     if (this.state.targetTerm === " " || this.state.targetHandle === " ") {
-      // console.log("something is empty");
       this.setState({
         fetchInProgress: false,
         errorMessage: "Something is empty.",
@@ -213,7 +212,12 @@ export default class AppComponent extends Component {
   renderResults(followers) {
     if (this.state.fetchInProgress) {
       return (
-        <div className="loading col-md-8 centric" style={backstyle}>
+        <div
+          className="loading col-md-8 centric"
+          style={{
+            backgroundColor: "black",
+          }}
+        >
           <img className="vert-centric" src={require("../tiffany.gif")} />
           <h2 className="load-notice"> One moment please</h2>
         </div>
@@ -234,9 +238,8 @@ export default class AppComponent extends Component {
     if (this.state.remainingRequests) {
       return (
         <div className="col-md-10">
-          {" "}
-          {this.state.remainingRequests} requests remaining (
-          {this.state.remainingRequests * 5000} followers).
+          {this.state.remainingRequests} requests remaining (You can search
+          through {this.state.remainingRequests * 5000} more followers).
         </div>
       );
     }
@@ -249,7 +252,7 @@ export default class AppComponent extends Component {
       <div>
         <div className="jumbotron jumbotron-fluid col-md-8 centric">
           <div className="container">
-            <h1 className="display-3">Hi, Who Are You? 🤔</h1>
+            <h1 className="display-3">Hi, Whom Are You? 🤔</h1>
             <h5 className="lead">Search Followers' Twitter Bios</h5>
             <hr />
             <h5 className="lead">
@@ -290,10 +293,6 @@ export default class AppComponent extends Component {
   }
 }
 
-const backstyle = {
-  backgroundColor: "black",
-};
-
 const FollowerTable = ({ followers }) => (
   <div className="table-responsive">
     <table className="table table-bordered">
@@ -317,7 +316,7 @@ const FollowerTable = ({ followers }) => (
                 {`@${follower.userHandle}`}
               </a>
             </td>
-            <td>{follower.userDescription}</td>
+            <td className="userDescrip">{follower.userDescription}</td>
             <td>{follower.userName}</td>
           </tr>
         ))}
