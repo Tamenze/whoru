@@ -252,7 +252,7 @@ export default class AppComponent extends Component {
       <div>
         <div className="jumbotron jumbotron-fluid col-md-8 centric">
           <div className="container">
-            <h1 className="display-3">Hi, Whom Are You? 🤔</h1>
+            <h1 className="display-3">Hi, Who Are You? 🤔</h1>
             <h5 className="lead">Search Followers' Twitter Bios</h5>
             <hr />
             <h5 className="lead">
