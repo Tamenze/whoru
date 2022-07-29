@@ -3,6 +3,7 @@ const getRateLimit = require("./getRateLimit").getRateLimit;
 const getFollowers = require("./getFollowers").getFollowers;
 const getUser = require("./getUser").getUser;
 
+
 const getBio = (request, response) => {
   const client = new Twitter({
     consumer_key: process.env.BIOTWIT_CONSUMER_KEY,
